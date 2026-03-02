@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HeartSync 💞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Landing Section -->
+        <div id="landing">
+            <h1>💞 HeartSync</h1>
+            <p class="tagline">Where emotions meet understanding</p>
+            <button onclick="showSignup()">Sign Up</button>
+            <button onclick="showLogin()">Login</button>
+        </div>
+
+        <!-- Signup -->
+        <div id="signup" class="hidden">
+            <h2>Create Account</h2>
+            <input type="text" id="signupName" placeholder="Full Name">
+            <input type="email" id="signupEmail" placeholder="Email (@gmail.com only)">
+            <input type="password" id="signupPassword" placeholder="Password">
+
+            <select id="signupGender">
+                <option value="">Select Gender</option>
+                <option value="girl">Girl</option>
+                <option value="boy">Boy</option>
+            </select>
+
+            <button onclick="signup()">Register</button>
+            <p id="generatedCode"></p>
+            <button onclick="backToHome()">Back</button>
+        </div>
+
+        <!-- Login -->
+        <div id="login" class="hidden">
+            <h2>Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <input type="text" id="matchCode" placeholder="Enter Girl's Match Code (for boys)">
+            <button onclick="login()">Login</button>
+            <button onclick="backToHome()">Back</button>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="dashboard" class="hidden">
+            <h2 id="welcomeText"></h2>
+
+            <div id="girlSection" class="hidden">
+                <h3>🌸 Girl Dashboard</h3>
+                <p id="girlMatchCodeDisplay"
+                    style="font-weight:bold; color:#e91e8c; background:#fff0f8; padding:10px; border-radius:8px; margin-bottom:10px;">
+                </p>
+
+                <label>Period Start Date</label>
+                <input type="date" id="periodDate">
+                <label>Cycle Length (days)</label>
+                <input type="number" id="cycleLength" value="28">
+                <button onclick="savePeriod()">Save Cycle</button>
+
+                <h4>Select Mood</h4>
+                <select id="girlMood">
+                    <option>Happy</option>
+                    <option>Low</option>
+                    <option>Irritated</option>
+                    <option>Emotional</option>
+                    <option>Anxious</option>
+                    <option>Tired</option>
+                </select>
+
+                <label>Family Stress</label>
+                <input type="range" min="0" max="10" id="familyStress">
+
+                <label>Academic Stress</label>
+                <input type="range" min="0" max="10" id="academicStress">
+
+                <label>Health Discomfort</label>
+                <input type="range" min="0" max="10" id="healthStress">
+
+                <h4>Cravings / Needs</h4>
+                <input type="text" id="cravings" placeholder="Chocolate / Hug / Space ...">
+
+                <button onclick="updateGirlData()">Update Status</button>
+            </div>
+
+            <div id="boySection" class="hidden">
+                <h3>💙 Boy Dashboard</h3>
+
+                <!-- Reminder banner: only visible to boy -->
+                <div id="reminderBanner" style="display:none;"></div>
+
+                <div id="girlStatus"></div>
+
+                <h4>Your Mood</h4>
+                <select id="boyMood">
+                    <option>Happy</option>
+                    <option>Supportive</option>
+                    <option>Calm</option>
+                    <option>Stressed</option>
+                </select>
+                <button onclick="updateBoyMood()">Update Mood</button>
+
+                <h4>Send Love Message 💌</h4>
+                <textarea id="loveMessage" placeholder="Type something sweet..."></textarea>
+                <button onclick="sendMessage()">Send</button>
+
+                <h4>Suggested Message</h4>
+                <button onclick="suggestMessage()">Get Suggestion</button>
+                <p id="suggestion"></p>
+            </div>
+
+            <!-- Important Dates Section (shared) -->
+            <div id="importantDatesSection">
+                <h3>📅 Important Dates</h3>
+
+                <!-- Add / Edit form -->
+                <div class="dates-form">
+                    <input type="hidden" id="editingDateIndex" value="-1">
+                    <input type="text" id="dateLabel" placeholder="Label (e.g. Her Birthday, Our Anniversary)">
+                    <select id="dateType">
+                        <option value="birthday">🎂 Birthday</option>
+                        <option value="anniversary">💍 Anniversary</option>
+                        <option value="other">⭐ Other Special Day</option>
+                    </select>
+                    <input type="date" id="dateValue">
+                    <button id="addDateBtn" onclick="saveDate()">➕ Add Date</button>
+                    <button id="cancelEditBtn" onclick="cancelEdit()" style="display:none; background:#aaa;">✖
+                        Cancel</button>
+                </div>
+
+                <div id="datesList"></div>
+            </div>
+
+            <h3>💌 Messages</h3>
+            <div id="messages"></div>
+
+            <button onclick="logout()">Logout</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
